@@ -1,0 +1,13 @@
+.main__ul {
+  list-style: none;
+  padding: 0;
+}
+
+.detail__btn {
+  margin-left: 10px;
+}
+
+img {
+  margin-top: 10px;
+  border: 1px solid black;
+}
