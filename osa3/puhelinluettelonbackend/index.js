@@ -44,7 +44,7 @@ app.get("/api/persons", (req, res) => {
 app.get("/info", (req, res) => {
   res.send(`
     <h1>Phonebook has info for ${persons.length} people.</h1>
-    <h3>${new Date().toString()}
+    <h3>${new Date().toString()}</h3>
     `);
 });
 

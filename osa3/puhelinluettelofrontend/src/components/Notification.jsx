@@ -3,7 +3,7 @@ const Notification = ({ message }) => {
     return null;
   }
 
-  const notificationMessage = message.startsWith("Information")
+  const notificationMessage = message.startsWith("Information") || message.startsWith("Error")
     ? "notification error"
     : "notification";
 

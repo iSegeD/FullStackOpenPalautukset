@@ -19,6 +19,18 @@ const App = () => {
     });
   }, []);
 
+  const dataReset = () => {
+    setNewName("");
+    setNewNumber("");
+  };
+
+  const notification = (message, duration = 5000) => {
+    setNotificationMessage(message);
+    setTimeout(() => {
+      setNotificationMessage(null);
+    }, duration);
+  };
+
   const addPerson = (e) => {
     e.preventDefault();
     const newPerson = {
@@ -45,32 +57,26 @@ const App = () => {
                 item.id !== currentUser.id ? item : jsonData
               )
             );
-            setNewName("");
-            setNewNumber("");
-            setNotificationMessage(`Updated: ${newName}`);
-            setTimeout(() => {
-              setNotificationMessage(null);
-            }, 3000);
+            dataReset();
+            notification(`Updated: ${newName}`);
           })
           .catch((error) => {
-            setNotificationMessage(
+            notification(
               `Information of ${newName} has already been removed from server`
             );
-            setTimeout(() => {
-              setNotificationMessage(null);
-            }, 5000);
           });
       }
     } else {
-      phoneService.create(newPerson).then((jsonData) => {
-        setPersons([...persons, jsonData]);
-        setNewName("");
-        setNewNumber("");
-        setNotificationMessage(`Added: ${newName}`);
-        setTimeout(() => {
-          setNotificationMessage(null);
-        }, 5000);
-      });
+      phoneService
+        .create(newPerson)
+        .then((jsonData) => {
+          setPersons([...persons, jsonData]);
+          dataReset();
+          notification(`Added: ${newName}`);
+        })
+        .catch((error) => {
+          notification(`Error: ${error.response.data.error}`);
+        });
     }
   };
 
@@ -80,18 +86,12 @@ const App = () => {
         .remove(id)
         .then(() => {
           setPersons(persons.filter((item) => item.id !== id));
-          setNotificationMessage(`Deleted: ${name}`);
-          setTimeout(() => {
-            setNotificationMessage(null);
-          }, 5000);
+          notification(`Deleted: ${name}`);
         })
         .catch((error) => {
-          setNotificationMessage(
+          notification(
             `Information of ${name} has already been removed from server`
           );
-          setTimeout(() => {
-            setNotificationMessage(null);
-          }, 5000);
         });
     }
   };
