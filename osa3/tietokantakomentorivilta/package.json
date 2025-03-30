@@ -1,0 +1,15 @@
+{
+  "name": "tietokantakomentorivilta",
+  "version": "1.0.0",
+  "description": "MongoDB",
+  "license": "ISC",
+  "author": "Sergey Dolzhenko",
+  "type": "commonjs",
+  "main": "mongo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "mongoose": "^8.13.0"
+  }
+}

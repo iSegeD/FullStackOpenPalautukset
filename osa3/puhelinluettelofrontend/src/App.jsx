@@ -61,9 +61,7 @@ const App = () => {
             notification(`Updated: ${newName}`);
           })
           .catch((error) => {
-            notification(
-              `Information of ${newName} has already been removed from server`
-            );
+            notification(`Error: ${error.response.data.error}`);
           });
       }
     } else {
